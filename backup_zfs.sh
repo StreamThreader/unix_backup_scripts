@@ -1,15 +1,12 @@
 #!/usr/local/bin/bash
 
-#####################################################################
-#		Version 1.0.7  2024-12-24			    #
-#								    #
-#####################################################################
 
+version_script="1.0.8"
 backuppath="/backup/2024-12-24"
 zpoolname="zroot"
 dote=`date +"%Y-%m-%d--%H-%M"`
 fastcompress="false"
-backsnapshotname=$dote"-backup_zfs_v1.0.7"
+backsnapshotname=$dote"-backup_zfs_v$version_script"
 info_file="$backuppath/$dote-00-$zpoolname-info.txt"
 
 # Custom skip example
@@ -185,7 +182,8 @@ echo "creating recursive snapshots"
 zfs snapshot -r $zpoolname@$backsnapshotname
 
 echo "list of snapshots:"
-list_of_snapshots="$(zfs list -r -o name -t snapshot $zpoolname | grep $backsnapshotname)"
+list_of_snapshots="$(zfs list -r -o name -t snapshot $zpoolname | \
+	grep $backsnapshotname)"
 
 echo "$list_of_snapshots"
 
