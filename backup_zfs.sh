@@ -5,7 +5,7 @@
 #								    #
 #####################################################################
 
-backuppath="/home/sthreader/backup/2024-12-24"
+backuppath="/backup/2024-12-24"
 zpoolname="zroot"
 dote=`date +"%Y-%m-%d--%H-%M"`
 fastcompress="false"
