@@ -1,7 +1,7 @@
 #!/usr/local/bin/bash
 
 
-version_script="1.0.8"
+version_script="1.0.9"
 backuppath="/backup/2024-12-24"
 zpoolname="zroot"
 dote=`date +"%Y-%m-%d--%H-%M"`
@@ -97,7 +97,7 @@ sysctl hw.physmem >> $info_file
 echo "" >> $info_file
 echo "__________________________________________________________" >> $info_file
 
-echo "camcontrol" >> $info_file
+echo "Disk list" >> $info_file
 camcontrol devlist >> $info_file
 
 echo "" >> $info_file
@@ -160,13 +160,13 @@ netstat -rn >> $info_file
 echo "" >> $info_file
 echo "__________________________________________________________" >> $info_file
 
-echo "ps ax " >> $info_file
+echo "Process list" >> $info_file
 ps ax >> $info_file
 
 echo "" >> $info_file
 echo "__________________________________________________________" >> $info_file
 
-echo "pkg info: " >> $info_file
+echo "Installed packages: " >> $info_file
 pkg info >> $info_file
 
 echo "" >> $info_file
