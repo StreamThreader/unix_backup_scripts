@@ -176,7 +176,7 @@ echo "Info saved to: "$info_file
 
 ###############################################################################
 
-echo 'Starting backup...'
+echo 'Backup started'
 
 echo "creating recursive snapshots"
 zfs snapshot -r $zpoolname@$backsnapshotname
@@ -227,4 +227,4 @@ echo ""
 echo "Destroy temporary created snapshots"
 zfs destroy -r $zpoolname@$backsnapshotname
 
-echo 'Backup complited'
+echo 'Backup finished'
