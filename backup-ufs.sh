@@ -59,12 +59,12 @@ dump -0 -L -f - /var | gzip -9 | pv  >  ${backuppath}/${dote}-var.img.gz
 echo 'Finished backup partition /var'
 sleep 4
 
-echo 'Starting backup partition /var /usr'
+echo 'Starting backup partition /usr'
 dump -0 -L -f - /usr | gzip -9  | pv >  ${backuppath}/${dote}-usr.img.gz
 echo 'Finished backup partition /usr'
 sleep 4
 
-echo 'Starting backup partition /var /home'
+echo 'Starting backup partition /home'
 dump -0 -L -f - /home | gzip -9  | pv >  ${backuppath}/${dote}-home.img.gz
 echo 'Finished backup partition /home'
 sleep 4
