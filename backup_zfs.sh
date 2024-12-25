@@ -62,7 +62,8 @@ fi
 
 echo "Collecting info..."
 
-echo "$dote" > $info_file
+echo "Script version: $version_script" > $info_file
+echo "Started at: $dote" >> $info_file
 
 echo "" >> $info_file
 echo "__________________________________________________________" >> $info_file
