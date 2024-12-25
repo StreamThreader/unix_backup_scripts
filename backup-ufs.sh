@@ -47,7 +47,7 @@ if !(dircheck $backuppath ); then
 fi
 
 # backup main partitions, excluded home
-echo 'Начал резервное копирование'
+echo 'Backup started'
 
 echo 'Starting backup root partition'
 dump -0 -L -f - / | gzip -9  | pv >  ${backuppath}/${dote}-root.img.gz
@@ -69,4 +69,4 @@ dump -0 -L -f - /home | gzip -9  | pv >  ${backuppath}/${dote}-home.img.gz
 echo 'Finished backup partition /home'
 sleep 4
 
-echo 'Backup complited'
+echo 'Backup finished'
