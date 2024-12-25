@@ -80,7 +80,6 @@ echo "" >> $info_file
 echo "__________________________________________________________" >> $info_file
 
 echo "Architecture:" >> $info_file
-
 sysctl hw.machine >> $info_file
 
 echo "" >> $info_file
@@ -93,14 +92,12 @@ echo "" >> $info_file
 echo "__________________________________________________________" >> $info_file
 
 echo "RAM:" >> $info_file
-
 sysctl hw.physmem >> $info_file
 
 echo "" >> $info_file
 echo "__________________________________________________________" >> $info_file
 
 echo "camcontrol" >> $info_file
-
 camcontrol devlist >> $info_file
 
 echo "" >> $info_file
@@ -116,20 +113,20 @@ for disk_n in $(camcontrol devlist|awk -F "," '{print $2}'| sed s/\)/""/g); do
 done
 
 echo "gpart show" >> $info_file
-
 gpart show >> $info_file
+
 echo "" >> $info_file
 echo "__________________________________________________________" >> $info_file
 
 echo "gpat list" >> $info_file
-
 gpart list >> $info_file
+
 echo "" >> $info_file
 echo "__________________________________________________________" >> $info_file
 
 echo "glabel status" >> $info_file
-
 glabel status >> $info_file
+
 echo "" >> $info_file
 echo "__________________________________________________________" >> $info_file
 
@@ -152,14 +149,18 @@ echo "" >> $info_file
 echo "__________________________________________________________" >> $info_file
 
 echo "ifconfig" >> $info_file
-
 ifconfig >> $info_file
 
 echo "" >> $info_file
 echo "__________________________________________________________" >> $info_file
 
-echo "ps ax " >> $info_file
+echo "Route table"
+netstat -rn >> $info_file
 
+echo "" >> $info_file
+echo "__________________________________________________________" >> $info_file
+
+echo "ps ax " >> $info_file
 ps ax >> $info_file
 
 echo "" >> $info_file
@@ -170,7 +171,6 @@ pkg info >> $info_file
 
 echo "" >> $info_file
 echo "__________________________________________________________" >> $info_file
-
 
 echo "Info saved to: "$info_file
 
