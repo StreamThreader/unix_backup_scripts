@@ -7,7 +7,7 @@
 
 
 dote=`date +"%Y-%m-%d--%H-%M" `
-backuppath="/backup/2023-03-01"
+backuppath="/backup/2012-03-01"
 
 dircheck ()
 {
