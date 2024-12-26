@@ -155,7 +155,6 @@ ifconfig >> $info_file
 echo "" >> $info_file
 echo "__________________________________________________________" >> $info_file
 
-echo "Route table" >> $info_file
 netstat -rn >> $info_file
 
 echo "" >> $info_file
