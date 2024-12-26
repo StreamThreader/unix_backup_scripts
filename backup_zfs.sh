@@ -212,11 +212,11 @@ for targetsnapname in ${list_of_snapshots[@]}; do
 
     if [ $fastcompress == "true" ]; then
 	echo "use fast compress method: gzip"
-	zfs send $targetsnapname | \
+	zfs send -v $targetsnapname | \
 	    nice gzip > $backuppath/$dote-$taskname.zfsend.gz
     else
     	echo "use best compress method: xz"
-	zfs send $targetsnapname | \
+	zfs send -v $targetsnapname | \
 	    nice xz -T0 > $backuppath/$dote-$taskname.zfsend.xz
     fi
 
