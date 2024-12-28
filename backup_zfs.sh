@@ -1,7 +1,7 @@
 #!/usr/local/bin/bash
 
 
-version_script="1.0.9"
+version_script="1.0.10"
 backuppath="/backup/2024-12-24"
 zpoolname="zroot"
 dote=`date +"%Y-%m-%d--%H-%M"`
@@ -186,6 +186,11 @@ list_of_snapshots="$(zfs list -r -o name -t snapshot $zpoolname | \
 	grep $backsnapshotname)"
 
 echo "$list_of_snapshots"
+
+echo "Press Ctrl+C for abort..."
+for i in $(seq 10 1); then
+	echo "$i"
+fi
 
 echo "Starting zfs send..."
 for targetsnapname in ${list_of_snapshots[@]}; do
