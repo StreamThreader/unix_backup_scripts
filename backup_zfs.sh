@@ -189,6 +189,7 @@ echo "$list_of_snapshots"
 
 echo "Press Ctrl+C for abort..."
 for i in $(seq 10 1); then
+	sleep 1
 	echo "$i"
 fi
 
