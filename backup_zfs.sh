@@ -188,10 +188,10 @@ list_of_snapshots="$(zfs list -r -o name -t snapshot $zpoolname | \
 echo "$list_of_snapshots"
 
 echo "Press Ctrl+C for abort..."
-for i in $(seq 10 1); then
+for i in $(seq 10 1); do
 	sleep 1
 	echo "$i"
-fi
+done
 
 echo "Starting zfs send..."
 for targetsnapname in ${list_of_snapshots[@]}; do
