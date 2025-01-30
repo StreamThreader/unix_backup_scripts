@@ -1,13 +1,13 @@
 #!/usr/local/bin/bash
 
-
-version_script="1.0.10"
-backuppath="/backup/2024-12-24"
+version_script="1.0.11"
+backuppath="/home/sthreader/backup/2025-01-30"
 zpoolname="zroot"
 dote=`date +"%Y-%m-%d--%H-%M"`
 fastcompress="false"
 backsnapshotname=$dote"-backup_zfs_v$version_script"
 info_file="$backuppath/$dote-00-$zpoolname-info.txt"
+restory_script="$backuppath/$dote-00-$zpoolname-restory.sh"
 
 # Custom skip example
 excludedataset=("$zpoolname/ROOTTEST" "$zpoolname/tmp/shm")
@@ -193,37 +193,49 @@ for i in $(seq 10 1); do
 	echo "$i"
 done
 
+# Generate restory script
+echo "#!/usr/local/bin/bash" > "$restory_script"
+echo "" >> "$restory_script"
+echo "exit" >> "$restory_script"
+echo "" >> "$restory_script"
+
 echo "Starting zfs send..."
 for targetsnapname in ${list_of_snapshots[@]}; do
     skipflag=0
-    taskname=$(echo $targetsnapname | awk -F "@" '{print $1}')
+    dtsetname=$(echo $targetsnapname | awk -F "@" '{print $1}')
     for i in ${excludedataset[*]}; do
-	if [ "$taskname" == "$i" ]; then
+	if [ "$dtsetname" == "$i" ]; then
 	    skipflag=1
 	    break
 	fi
     done
 
     if [ $skipflag == 1 ]; then
-	echo "Skip: $taskname"
+	echo "Skip: $dtsetname"
 	continue
     fi
 
     # replace slash to underscore
-    taskname=$(echo $taskname | sed 's/\//_/g')
+    taskname=$(echo $dtsetname | sed 's/\//_/g')
 
     echo ""
-    echo "Starting backup: "$taskname
+    echo "Starting backup: "$dtsetname
     echo "zfs send $targetsnapname"
 
     if [ $fastcompress == "true" ]; then
 	echo "use fast compress method: gzip"
 	zfs send -v $targetsnapname | \
 	    nice gzip > $backuppath/$dote-$taskname.zfsend.gz
+
+	echo "gzcat ./$dote-$taskname.zfsend.gz | zfs recv -F $dtsetname" \
+	    >> "$restory_script"
     else
     	echo "use best compress method: xz"
 	zfs send -v $targetsnapname | \
 	    nice xz -T0 > $backuppath/$dote-$taskname.zfsend.xz
+
+	echo "xzcat ./$dote-$taskname.zfsend.xz | zfs recv -F $dtsetname"\
+	    >> "$restory_script"
     fi
 
     echo "Finish backup: "$taskname
