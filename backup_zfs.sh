@@ -227,14 +227,14 @@ for targetsnapname in ${list_of_snapshots[@]}; do
 	zfs send -v $targetsnapname | \
 	    nice gzip > $backuppath/$dote-$taskname.zfsend.gz
 
-	echo "gzcat ./$dote-$taskname.zfsend.gz | zfs recv -F $dtsetname" \
+	echo "gzcat ./$dote-$taskname.zfsend.gz | zfs recv -v -F $dtsetname" \
 	    >> "$restory_script"
     else
     	echo "use best compress method: xz"
 	zfs send -v $targetsnapname | \
 	    nice xz -T0 > $backuppath/$dote-$taskname.zfsend.xz
 
-	echo "xzcat ./$dote-$taskname.zfsend.xz | zfs recv -F $dtsetname"\
+	echo "xzcat ./$dote-$taskname.zfsend.xz | zfs recv -v -F $dtsetname"\
 	    >> "$restory_script"
     fi
 
