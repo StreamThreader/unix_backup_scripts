@@ -194,7 +194,7 @@ for i in $(seq 10 1); do
 done
 
 # Generate restory script
-echo "#!/usr/local/bin/bash" > "$restory_script"
+echo "#!/bin/sh" > "$restory_script"
 echo "" >> "$restory_script"
 echo "exit" >> "$restory_script"
 echo "" >> "$restory_script"
