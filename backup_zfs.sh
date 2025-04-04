@@ -1,6 +1,6 @@
 #!/usr/local/bin/bash
 
-version_script="1.0.11"
+version_script="1.0.12"
 backuppath="/home/sthreader/backup/2025-01-30"
 zpoolname="zroot"
 dote=`date +"%Y-%m-%d--%H-%M"`
