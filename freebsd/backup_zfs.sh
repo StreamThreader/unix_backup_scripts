@@ -1,5 +1,7 @@
 #!/usr/local/bin/bash
 
+# For FreeBSD 14.2
+
 version_script="1.0.12"
 backuppath="/backup"
 zpoolname="zroot"
