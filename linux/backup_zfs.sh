@@ -2,7 +2,7 @@
 
 # For Linux Debian 12.10
 
-version_script="1.0.2"
+version_script="1.0.3"
 backuppath="/home/ftp/incoming/bpool"
 zpoolname="bpool"
 dote=`date +"%Y-%m-%d--%H-%M"`
@@ -89,13 +89,17 @@ echo "" >> $info_file
 echo "__________________________________________________________" >> $info_file
 
 echo "CPU:" >> $info_file
-lscpu | grep ^Model\ name\: >> $info_file
+lscpu | grep ^"Model name:" >> $info_file
+lscpu | grep ^"CPU(s):" >> $info_file
+lscpu | grep ^"Architecture:" >> $info_file
+lscpu | grep ^"Hypervisor vendor:" >> $info_file
 
 echo "" >> $info_file
 echo "__________________________________________________________" >> $info_file
 
 echo "RAM:" >> $info_file
 grep MemTotal /proc/meminfo >> $info_file
+grep MemFree /proc/meminfo >> $info_file
 
 echo "" >> $info_file
 echo "__________________________________________________________" >> $info_file
