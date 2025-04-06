@@ -2,7 +2,7 @@
 
 # For Linux Debian 12.10
 
-version_script="1.0.0"
+version_script="1.0.1"
 backuppath="/home/ftp/incoming/bpool"
 zpoolname="bpool"
 dote=`date +"%Y-%m-%d--%H-%M"`
