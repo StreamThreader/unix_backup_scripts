@@ -207,7 +207,7 @@ list_of_snapshots="$(zfs list -r -o name -t snapshot $zpoolname | \
 echo "$list_of_snapshots" | column -t -s "@"
 
 echo "Press Ctrl+C to abort..."
-for i in $(seq 10 1); do
+for i in $(seq 10 -1 1); do
 	sleep 1
 	echo "$i"
 done
